@@ -9,10 +9,19 @@ class QLTLController extends Controller
 {
     
     // Hiển thị danh sách thể loại
-    public function index()
+     public function index(Request $request)
     {
-        $ds_tl = TheLoai::all();
-        return view('qltl', compact('ds_tl'));
+        $tukhoa = $request->input('tukhoa');
+
+        if ($tukhoa) {
+            $ds_tl = TheLoai::where('matl', 'like', "%$tukhoa%")
+                ->orWhere('tentl', 'like', "%$tukhoa%")
+                ->get();
+        } else {
+            $ds_tl = TheLoai::all();
+        }
+
+        return view('qltl', compact('ds_tl', 'tukhoa'));
     }
 
     // Truy vấn và hiển thị form cập nhật thể loại

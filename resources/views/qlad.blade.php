@@ -6,7 +6,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
-
+@include('phandauqly')
 @if(isset($taikhoan))
 <h2 class="text-center mt-4">CẬP NHẬT TÀI KHOẢN ADMIN</h2>
 

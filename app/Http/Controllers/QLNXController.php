@@ -6,10 +6,20 @@ use App\Models\NhanXet;
 
 class QLNXController extends Controller
 {
-    public function index()
+
+      public function index(Request $request)
     {
-        $ds_nhanxet = NhanXet::all();
-        return view('qlnx', compact('ds_nhanxet'));
+        $tukhoa = $request->input('tukhoa');
+
+        if ($tukhoa) {
+            $ds_nhanxet = NhanXet::where('id_sach', 'like', "%$tukhoa%")
+                
+                ->get();
+        } else {
+            $ds_nhanxet = NhanXet::all();
+        }
+
+        return view('qlnx', compact('ds_nhanxet', 'tukhoa'));
     }
 
     public function edit($id_nx)

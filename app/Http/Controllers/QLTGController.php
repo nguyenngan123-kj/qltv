@@ -8,10 +8,20 @@ use App\Models\TacGia;
 class QLTGController extends Controller
 {
     // Hiển thị danh sách tác giả
-    public function index()
+      public function index(Request $request)
     {
-        $ds_tg = TacGia::all();
-        return view('qltg', compact('ds_tg'));
+        $tukhoa = $request->input('tukhoa');
+
+        if ($tukhoa) {
+            $ds_tg = TacGia::where('matg', 'like', "%$tukhoa%")
+                ->orWhere('tentg', 'like', "%$tukhoa%")
+                ->orWhere('quoctich', 'like', "%$tukhoa%")
+                ->get();
+        } else {
+            $ds_tg = TacGia::all();
+        }
+
+        return view('qltg', compact('ds_tg', 'tukhoa'));
     }
 
     // Truy vấn và hiển thị form cập nhật tác giả

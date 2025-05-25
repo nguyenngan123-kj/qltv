@@ -115,6 +115,9 @@ use App\Http\Controllers\ThemQLSController;
 Route::get('/themqls', [ThemQLSController::class, 'themqls'])->name('themqls');
 Route::post('/themqls', [ThemQLSController::class, 'store'])->name('themqls.store');
 
+//bieu do
+Route::get('/sach/bieudo', [App\Http\Controllers\QLSController::class, 'thongKeTheLoai']);
+
 
 // quan ly sinh vien
 use App\Http\Controllers\QLSVController;

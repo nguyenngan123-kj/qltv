@@ -8,11 +8,22 @@ class QLTKDGController extends Controller
 {
 
     // Hiển thị danh sách tài khoản độc giả
-    public function index()
-    {
+
+    public function index(Request $request)
+{
+    $tukhoa = $request->input('tukhoa');
+
+    if ($tukhoa) {
+        $ds_dg = DocGia::where('ten_dg', 'like', "%$tukhoa%")
+                      
+                      ->get();
+    } else {
         $ds_dg = DocGia::all();
-        return view('qldg', compact('ds_dg'));
     }
+
+    return view('qldg', compact('ds_dg', 'tukhoa'));
+}
+
 
     // Hiển thị form cập nhật tài khoản độc giả
     public function edit($id_dg)

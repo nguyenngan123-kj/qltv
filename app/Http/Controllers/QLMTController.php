@@ -10,11 +10,22 @@ class QLMTController extends Controller
     /**
      * Hiển thị danh sách mượn-trả
      */
-    public function index()
-    {
-        $ds_muontra = MuonTra::all();
-        return view('qlmt', compact('ds_muontra'));
-    }
+  
+        public function index(Request $request)
+        {
+            $tukhoa = $request->input('tukhoa');
+
+            if ($tukhoa) {
+                $ds_muontra = MuonTra::where('id_dg', 'like', "%$tukhoa%")
+                    ->orWhere('id_sach', 'like', "%$tukhoa%")
+                    ->get();
+            } else {
+                $ds_muontra = MuonTra::all();
+            }
+
+            return view('qlmt', compact('ds_muontra', 'tukhoa'));
+        }
+
 
     /**
      * Hiển thị form chỉnh sửa bản ghi

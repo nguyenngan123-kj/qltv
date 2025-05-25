@@ -8,12 +8,20 @@ class QLTTController extends Controller
 {
 
     // Hiển thị danh sách tin tức
-    public function index()
+     public function index(Request $request)
     {
-        $ds_tt = TinTuc::all();
-        return view('qltt', compact('ds_tt'));
-    }
+        $tukhoa = $request->input('tukhoa');
 
+        if ($tukhoa) {
+            $ds_tt = TinTuc::where('tieude', 'like', "%$tukhoa%")
+                        ->orWhere('trichdan', 'like', "%$tukhoa%")
+                        ->get();
+        } else {
+            $ds_tt = TinTuc::all();
+        }
+
+        return view('qltt', compact('ds_tt', 'tukhoa'));
+    }
     // Hiển thị form cập nhật tin tức
     public function edit($id_tt)
     {

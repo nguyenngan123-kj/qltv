@@ -7,6 +7,21 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
+  @include('phandauqly')
+
+  <div class="container mt-4">
+    <form method="GET" action="{{ route('muontra.index') }}">
+        <div class="row mb-3">
+            <div class="col-md-10">
+                <input class="form-control" type="text" name="tukhoa" placeholder="Nhập vào id độc giả và id sách" value="{{ $tukhoa ?? '' }}">
+            </div>
+           
+            <div class="col-md-2">
+                <button class="btn btn-outline-success w-100" type="submit">Tìm kiếm</button>
+            </div>
+        </div>
+    </form>
+</div>
   @if(isset($muontra))
     <h2 class="text-center mt-4">CẬP NHẬT MƯỢN-TRẢ</h2>
     <form action="{{ route('muontra.update', $muontra->id_mt) }}" method="POST">

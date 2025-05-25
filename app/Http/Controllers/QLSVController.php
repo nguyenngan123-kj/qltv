@@ -9,10 +9,21 @@ class QLSVController extends Controller
 {
 
     // Hiển thị danh sách sinh viên
-    public function index()
+     public function index(Request $request)
     {
-        $ds_sinhvien = SinhVien::with('lop')->get(); // lấy kèm thông tin lớp
-        return view('qlsv', compact('ds_sinhvien'));
+        $tukhoa = $request->input('tukhoa');
+
+        if ($tukhoa) {
+            $ds_sinhvien = SinhVien::with('lop')
+                ->where('masv', 'like', "%$tukhoa%")
+                ->orWhere('hoten', 'like', "%$tukhoa%")
+               
+                ->get();
+        } else {
+            $ds_sinhvien = SinhVien::with('lop')->get(); // lấy kèm thông tin lớp
+        }
+
+        return view('qlsv', compact('ds_sinhvien', 'tukhoa'));
     }
 
     // Sửa thông tin sinh viên

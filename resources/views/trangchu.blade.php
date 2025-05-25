@@ -80,7 +80,6 @@
     </div>
 </div>
 
-
 <!-- tìm  kiếm  -->
 
                 <!-- form tìm kiếm trong trangchu.php -->
@@ -96,7 +95,6 @@
                                 </div>
                                 </div>
                         </form>
-
 
                 <!-- dong -->
                 <div class="container">

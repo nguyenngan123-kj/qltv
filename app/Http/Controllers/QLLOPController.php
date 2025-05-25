@@ -6,12 +6,19 @@ use App\Models\Lop;
 
 class QLLOPController extends Controller
 {
-
-    public function index()
+ public function index(Request $request)
     {
-        $ds_lop = Lop::all();
-        return view('qllop', compact('ds_lop'));
+        $tukhoa = $request->input('tukhoa');
+        
+        if ($tukhoa) {
+            $ds_lop = Lop::where('tenlop', 'like', "%$tukhoa%")->get();
+        } else {
+            $ds_lop = Lop::all();
+        }
+
+        return view('qllop', compact('ds_lop', 'tukhoa'));
     }
+  
 public function edit($id_lop)
 {
     $lop = Lop::findOrFail($id_lop);
@@ -41,4 +48,5 @@ public function edit($id_lop)
         $lop->delete();
         return redirect()->route('lop.index');
     }
+   
 }
