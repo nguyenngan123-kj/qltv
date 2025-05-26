@@ -89,6 +89,14 @@ use App\Http\Controllers\ThemQLMTController;
 Route::get('/themqlmt', [ThemQLMTController::class, 'themqlmt'])->name('themqlmt');
 Route::post('/themqlmt', [ThemQLMTController::class, 'store'])->name('themqlmt.store');
 
+//bieu do
+Route::get('/sosach/bieudo', [App\Http\Controllers\QLMTController::class, 'thongKeSach']);
+Route::get('/sdgbd/bieudo', [App\Http\Controllers\QLMTController::class, 'thongKeHanNgay']);
+Route::get('/stkthang/bieudo', [App\Http\Controllers\QLMTController::class, 'thongketheothang']);
+
+
+
+
 
 //quan ly nhan xet
 use App\Http\Controllers\QLNXController;
@@ -116,7 +124,7 @@ Route::get('/themqls', [ThemQLSController::class, 'themqls'])->name('themqls');
 Route::post('/themqls', [ThemQLSController::class, 'store'])->name('themqls.store');
 
 //bieu do
-Route::get('/sach/bieudo', [App\Http\Controllers\QLSController::class, 'thongKeTheLoai']);
+Route::get('/sachbd/bieudo', [App\Http\Controllers\QLSController::class, 'thongKeTheLoai']);
 
 
 // quan ly sinh vien

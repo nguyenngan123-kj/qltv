@@ -22,4 +22,10 @@ class MuonTra extends Model
         'ngaytra',
         'ghichu',
     ];
+
+    public function sach()
+{
+    return $this->belongsTo(Sach::class, 'id_sach');
 }
+}
+
