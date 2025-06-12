@@ -7,6 +7,7 @@ use App\Models\MuonTra; // Import model MuonTra
 use App\Models\TruyCapWeb; // Import model TruyCapWeb
 use App\Models\TinTuc; // Import model TinTuc
 use App\Models\TacGia; // Import model TacGia
+use App\Models\DangHinh; // Import model DangHinh
 use Illuminate\Http\Request;
   
 
@@ -46,9 +47,11 @@ class TrangChuController extends Controller
          // Lấy id_dg từ session Laravel
             $id_dg = session('id_dg'); // Trả về null nếu không có
                    
+            $hinhanh = DangHinh::select('hinh')->orderByDesc('id_dh')->first();
+
         return view('trangchu', compact(
             'tong_sach', 'sach_muon', 'sach_con_lai',
-            'luot_truy_cap', 'sach_moi', 'tin_tuc', 'de_xuat','id_dg'
+            'luot_truy_cap', 'sach_moi', 'tin_tuc', 'de_xuat','id_dg','hinhanh'
         ));
     }
   

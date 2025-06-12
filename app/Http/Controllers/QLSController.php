@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Sach;
 use App\Models\TheLoai;
+use App\Models\TacGia;
+
 use Illuminate\Support\Facades\DB;
 class QLSController extends Controller
 {
@@ -27,32 +29,50 @@ class QLSController extends Controller
         return view('qls', compact('ds_sach', 'tukhoa'));
     }
     // Form sửa sách
-    public function edit($id_sach)
-    {
-        $sach = Sach::findOrFail($id_sach);
-        $ds_sach = Sach::all(); // nếu cần hiển thị danh sách
-        return view('qls', compact('sach', 'ds_sach'));
-    }
+public function edit($id_sach)
+{
+    $sach = Sach::findOrFail($id_sach);
+    $ds_tg = TacGia::all();
+    $ds_tl = TheLoai::all();
+    $ds_sach = Sach::all(); // nếu vẫn muốn giữ danh sách sách
+
+    return view('qls', compact('sach', 'ds_sach', 'ds_tg', 'ds_tl'));
+}
 
     // Cập nhật sách
-    public function update(Request $request, $id_sach)
-    {
-        $request->validate([
-            'masach' => 'required|string',
-            'tensach' => 'required|string',
-            'id_tg' => 'required|integer',
-            'id_tl' => 'required|integer',
-            'nxb' => 'required|string',
-            'ngaynhap' => 'required|date',
-            'soluong' => 'required|integer',
-            'hinhsach' => 'required|string',
-            'link' => 'required|string',
-        ]);
+public function update(Request $request, $id_sach)
+{
+    $validated = $request->validate([
+        'masach'    => 'required|string|max:50',
+        'tensach'   => 'required|string|max:255',
+        'id_tg'     => 'required|integer',
+        'id_tl'     => 'required|integer',
+        'nxb'       => 'required|string|max:100',
+        'ngaynhap'  => 'required|date',
+        'soluong'   => 'required|integer|min:1',
+        'link'      => 'required|string|max:255',
+          'hinhsach'  => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+    ]);
 
-        $sach = Sach::findOrFail($id_sach);
-        $sach->update($request->all());
-        return redirect()->route('sach.index');
+    $sach = Sach::findOrFail($id_sach);
+        $data = $request->only(['masach', 'tensach', 'id_tg', 'id_tl', 'nxb', 'ngaynhap', 'soluong', 'link']);
+    if ($request->hasFile('hinhsach')) {
+        $file = $request->file('hinhsach');
+        $filename = $file->getClientOriginalName();
+        $file->move(public_path('hinhanh'), $filename);
+
+        // Xóa ảnh cũ nếu tồn tại
+        if ($sach->hinhsach && file_exists(public_path($sach->hinhsach))) {
+            unlink(public_path($sach->hinhsach));
+        }
+
+        $data['hinhsach'] = 'hinhanh/' . $filename;
     }
+    $sach->update($data);
+    return redirect()->route('sach.index')->with('success', 'Cập nhật sách thành công!');
+}
+
+
 
     // Xóa sách
     public function destroy($id_sach)
@@ -78,7 +98,7 @@ class QLSController extends Controller
         $counts[] = $item->soluong;
     }
 
-    return view('sachbd', [
+    return view('tktheloaisach', [
 
      'labelsJson' => json_encode($labels),
         'countsJson' => json_encode($counts),

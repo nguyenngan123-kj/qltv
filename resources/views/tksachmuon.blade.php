@@ -1,5 +1,3 @@
-<!-- so luong sach theo the loai -->
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -18,7 +16,9 @@
             border-collapse: collapse;
             width: 60%;
         }
-
+        tr{
+            text-align: center;
+        }
         th, td {
             padding: 10px;
             border: 1px solid #ccc;
@@ -35,42 +35,50 @@
     </style>
 </head>
 <body>
-    <h2>Biểu đồ tròn - Thống kê sách theo thể loại</h2>
+     @include('phantk')
+    <h2>Biểu đồ tròn - Thống kê số sách đã mượn</h2>
     <div id="chart-container">
         <canvas id="pieChart"></canvas>
     </div>
 
     {{-- Bảng thống kê --}}
-    <h2>Bảng thống kê số lượng sách theo thể loại</h2>
+    <h2>Bảng Thống kê số sách đã mượn</h2>
     <table>
         <thead>
             <tr>
-                <th>Thể loại</th>
+                <th>Tên sách</th>
                 <th>Số lượng</th>
+                <th>Đã mượn</th>
+                <th>Còn lại</th>
             </tr>
         </thead>
         <tbody>
-            @foreach(json_decode($labelsJson) as $index => $label)
+          @foreach(json_decode($tensach) as $index => $ten)
                 <tr>
-                    <td>{{ $label }}</td>
-                    <td>{{ json_decode($countsJson)[$index] }}</td>
+                    <td>{{ $ten }}</td>
+                    <td>{{ json_decode($soluong)[$index] }}</td>
+                    <td>{{ json_decode($damuon)[$index] }}</td>
+                    <td>{{ json_decode($conlai)[$index] }}</td>
                 </tr>
             @endforeach
+
+
         </tbody>
     </table>
 
     <script>
         // Dữ liệu từ Controller
-        let labels = JSON.parse('{!! addslashes($labelsJson) !!}');
-        let counts = JSON.parse('{!! addslashes($countsJson) !!}');
+       let tensach = JSON.parse('{!! addslashes($tensach) !!}');
+       let counts = JSON.parse('{!! addslashes($damuon) !!}');
+
 
         const ctx = document.getElementById('pieChart').getContext('2d');
         const pieChart = new Chart(ctx, {
             type: 'pie',
             data: {
-                labels: labels,
+                labels: tensach,
                 datasets: [{
-                    label: 'Số lượng sách',
+                    label: 'Tên sách',
                     data: counts,
                     backgroundColor: [
                         '#FF6384', '#36A2EB', '#FFCE56', '#4BC0C0', '#9966FF',
@@ -85,7 +93,7 @@
                     legend: { position: 'bottom' },
                     title: {
                         display: true,
-                        text: 'Phân bố số lượng sách theo thể loại'
+                        text: 'Tổng số sách đã mượn '
                     }
                 }
             }

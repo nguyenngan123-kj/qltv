@@ -22,7 +22,7 @@
 @if(isset($tintuc))
 <h2 class="text-center">CẬP NHẬT TIN TỨC</h2>
 
-<form action="{{ route('tintuc.update', $tintuc->id_tt) }}" method="POST">
+<form action="{{ route('tintuc.update', $tintuc->id_tt) }}" method="POST" enctype="multipart/form-data">
     @csrf
     @method('PUT')
     <div class="d-flex justify-content-center">
@@ -43,10 +43,19 @@
                 <td>Ngày đăng</td>
                 <td><input name="ngaydang" type="date" value="{{ $tintuc->ngaydang }}" class="form-control"></td>
             </tr>
-            <tr>
-                <td>Hình ảnh (link)</td>
-                <td><input name="hinhtt" type="text" value="{{ $tintuc->hinhtt }}" class="form-control"></td>
-            </tr>
+
+                     <tr>
+                    <td style="padding: 10px;">Hình</td>
+                    <td >
+                        @if (!empty($tintuc->hinh))
+                            <img src="{{ asset($tintuc->hinhtt) }}" width="100"><br>
+                        @endif
+
+                        <input type="file" class="form-control" name="hinhtt" accept="image/*">
+
+                    </td>
+                </tr>
+        <tr>
             <tr>
                 <td colspan="2" class="text-center">
                     <input type="submit" class="btn btn-primary" value="CẬP NHẬT">

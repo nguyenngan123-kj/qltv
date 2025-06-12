@@ -21,11 +21,18 @@ class ThemQLTTController extends Controller
             'trichdan' => 'required|string',
             'link' => 'required|string',
             'ngaydang' => 'required|date',
-            'hinhtt' => 'required|string',
+            'hinhtt' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
+ $data = $request->all();
 
-        TinTuc::create($request->all());
+    if ($request->hasFile('hinhtt')) {
+        $file = $request->file('hinhtt');
+        $filename = time() . '_' . $file->getClientOriginalName(); // để tránh trùng tên
+        $file->move(public_path('hinhanh'), $filename);
+        $data['hinhtt'] = 'hinhanh/' . $filename;
+    }
+    TinTuc::create($request->all());
 
-        return redirect()->route('tintuc.index'); // đổi route phù hợp
+    return redirect()->route('tintuc.index')->with('success', 'Cập nhật thành công!');
     }
 }

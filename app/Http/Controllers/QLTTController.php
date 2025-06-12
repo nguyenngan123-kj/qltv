@@ -31,21 +31,31 @@ class QLTTController extends Controller
     }
 
     // Cập nhật thông tin tin tức
-    public function update(Request $request, $id_tt)
-    {
-        $request->validate([
-            'tieude' => 'required|string',
-            'trichdan' => 'required|string',
-            'link' => 'required|string',
-            'ngaydang' => 'required|date',
-            'hinhtt' => 'required|string',
-        ]);
+public function update(Request $request, $id_tt)
+{
+    $request->validate([
+        'tieude' => 'required|string',
+        'trichdan' => 'required|string',
+        'link' => 'required|string',
+        'ngaydang' => 'required|date',
+        'hinhtt' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+    ]);
 
-        $tintuc = TinTuc::findOrFail($id_tt);
-        $tintuc->update($request->all());
+    $tintuc = TinTuc::findOrFail($id_tt);
+    $data = $request->only(['tieude','trichdan','link','ngaydang']);
 
-        return redirect()->route('tintuc.index');
+    if ($request->hasFile('hinhtt')) {
+        $file = $request->file('hinhtt');
+        $filename = time() . '_' . $file->getClientOriginalName(); // để tránh trùng tên
+        $file->move(public_path('hinhanh'), $filename);
+        $data['hinhtt'] = 'hinhanh/' . $filename;
     }
+
+    $tintuc->update($data);
+
+    return redirect()->route('tintuc.index')->with('success', 'Cập nhật thành công!');
+}
+
 
     // Xóa tin tức
     public function destroy($id_tt)

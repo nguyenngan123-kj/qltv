@@ -25,7 +25,7 @@ class AdminController extends Controller
               ->first();
 
             if($admin){
-                 return redirect()->route('quanly');
+                 return redirect()->route('lop.index');
              
                 }
 }

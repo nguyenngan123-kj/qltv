@@ -77,6 +77,18 @@ Route::get('/lopthemqllop', [ThemQLLOPController::class, 'themqllop'])->name('th
 Route::post('/lopthemqllop', [ThemQLLOPController::class, 'store'])->name('themqllop.store');
 
 
+//Danghinh
+use App\Http\Controllers\DangHinhController;
+Route::get('/danghinh', [DangHinhController::class, 'index'])->name('dh.index');
+Route::get('/danghinh/{id_dh}/edit', [DangHinhController::class, 'edit'])->name('dh.edit');
+
+Route::put('/danghinh/{id_dh}', [DangHinhController::class, 'update'])->name('dh.update');
+Route::delete('/danghinh/{id_dh}', [DangHinhController::class, 'destroy'])->name('dh.destroy');
+use App\Http\Controllers\ThemDangHinhController;
+Route::post('/themhinh', [ThemDangHinhController::class, 'store'])->name('dh.store');
+Route::get('/themhinh', [ThemDangHinhController::class, 'themhinh'])->name('dh.themhinh');
+
+
 //quan ly muon tra
 use App\Http\Controllers\QLMTController;
 Route::get('/muontra', [QLMTController::class, 'index'])->name('muontra.index');
@@ -90,9 +102,9 @@ Route::get('/themqlmt', [ThemQLMTController::class, 'themqlmt'])->name('themqlmt
 Route::post('/themqlmt', [ThemQLMTController::class, 'store'])->name('themqlmt.store');
 
 //bieu do
-Route::get('/sosach/bieudo', [App\Http\Controllers\QLMTController::class, 'thongKeSach']);
-Route::get('/sdgbd/bieudo', [App\Http\Controllers\QLMTController::class, 'thongKeHanNgay']);
-Route::get('/stkthang/bieudo', [App\Http\Controllers\QLMTController::class, 'thongketheothang']);
+Route::get('/sosach/bieudo', [App\Http\Controllers\QLMTController::class, 'thongKeSach'])->name('thongKeSach');
+Route::get('/sdgbd/bieudo', [App\Http\Controllers\QLMTController::class, 'thongKeHanNgay'])->name('thongKeHanNgay');
+Route::get('/stkthang/bieudo', [App\Http\Controllers\QLMTController::class, 'thongketheothang'])->name('thongketheothang');
 
 
 
@@ -124,7 +136,7 @@ Route::get('/themqls', [ThemQLSController::class, 'themqls'])->name('themqls');
 Route::post('/themqls', [ThemQLSController::class, 'store'])->name('themqls.store');
 
 //bieu do
-Route::get('/sachbd/bieudo', [App\Http\Controllers\QLSController::class, 'thongKeTheLoai']);
+Route::get('/sachbd/bieudo', [App\Http\Controllers\QLSController::class, 'thongKeTheLoai'])->name('thongKeTheLoai');
 
 
 // quan ly sinh vien

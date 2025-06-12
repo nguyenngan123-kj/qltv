@@ -5,6 +5,26 @@
     <title>QL Mượn-Trả</title>
     <!-- Bootstrap 5 CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+       <style>
+@media print {
+    body * {
+        visibility: hidden;
+    }
+    #print-area, #print-area * {
+        visibility: visible;
+    }
+    #print-area {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+    }
+    button, a, form {
+        display: none !important;
+    }
+}
+</style>
+
 </head>
 <body>
   @include('phandauqly')
@@ -30,14 +50,43 @@
       <div class="d-flex justify-content-center">
         <input type="hidden" name="id_mt" value="{{ $muontra->id_mt }}">
         <table class="table table-bordered w-75">
-          <tr>
+          
+        <!-- <tr>
             <td class="p-2">ID ĐỘC GIẢ</td>
             <td><input name="id_dg" type="number" value="{{ $muontra->id_dg }}" class="form-control"></td>
           </tr>
           <tr>
             <td class="p-2">ID SÁCH</td>
             <td><input name="id_sach" type="number" value="{{ $muontra->id_sach }}" class="form-control"></td>
-          </tr>
+          </tr> -->
+<tr>
+    <td>ĐỘC GIẢ</td>
+    <td>
+        <select name="id_dg" class="form-select" required>
+            <option value="">-- Chọn --</option>
+            @foreach($ds_dg as $tg)
+                <option value="{{ $tg->id_dg }}" {{ $tg->id_dg == $muontra->id_dg  ? 'selected' : '' }}>
+                    {{ $tg->ten_dg}}
+                </option>
+            @endforeach
+        </select>
+    </td>
+</tr>
+<tr>
+    <td>SÁCH </td>
+    <td>
+        <select name="id_sach" class="form-select" required>
+            <option value="">-- Chọn --</option>
+            @foreach($ds_s as $tg)
+                <option value="{{ $tg->id_sach }}" {{ $tg->id_sach == $muontra->id_sach  ? 'selected' : '' }}>
+                    {{ $tg->tensach}}
+                </option>
+            @endforeach
+        </select>
+    </td>
+</tr>
+
+
           <tr>
             <td class="p-2">NGÀY MƯỢN</td>
             <td><input name="ngaymuon" type="date" value="{{ $muontra->ngaymuon }}" class="form-control"></td>
@@ -66,6 +115,10 @@
     <div class="mb-3 text-start ms-5">
       <a href="{{ route('themqlmt') }}" class="btn btn-success">Thêm Mượn-Trả</a> 
     </div>
+     <div class="mb-3 text-start ms-5">
+       <button onclick="window.print()" class="btn btn-secondary">IN BẢNG</button>
+    </div>
+       <div id="print-area">
     <table class="table table-bordered w-90 mx-auto">
       <thead>
         <tr>
@@ -98,6 +151,7 @@
       @endforeach
       </tbody>
     </table>
+       </div>
   </div>
 </body>
 </html>

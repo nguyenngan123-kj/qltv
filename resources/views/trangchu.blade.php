@@ -25,7 +25,8 @@
 <!-- welcom                     -->
           <div class="carousel-inner  container">
             <div class="carousel-item active">
-            <img  height="300px" width="150px" src="{{ asset('hinhanh/bgwelcom.jpg') }}" class="d-block w-100 hinhsale" alt="...">
+               <img height="300px" width="150px" src="{{ asset($hinhanh->hinh) }}" class="d-block w-100 hinhsale" alt="...">
+
 
             </div>
             <div class="carousel-item">

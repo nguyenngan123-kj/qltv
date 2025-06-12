@@ -14,7 +14,7 @@
         
         <div class="d-flex justify-content-center">
             <table class="table table-bordered" style="width: 60%; border-collapse: collapse;">
-                <tr>
+                <!-- <tr>
                     <td class="align-middle px-3">ID ĐỘC GIẢ</td>
                     <td>
                         <input name="id_dg" type="number" class="form-control" placeholder="Nhập mã độc giả">
@@ -25,7 +25,33 @@
                     <td>
                         <input name="id_sach" type="number" class="form-control" placeholder="Nhập mã sách">
                     </td>
-                </tr>
+                </tr> -->
+<tr>
+    <td>ĐỘC GIẢ</td>
+    <td>
+        <select name="id_dg" class="form-select" required>
+            <option value="">-- Chọn --</option>
+            @foreach($ds_dg as $tg)
+                <option value="{{ $tg->id_dg }}" >
+                    {{ $tg->ten_dg}}
+                </option>
+            @endforeach
+        </select>
+    </td>
+</tr>
+<tr>
+    <td>SÁCH </td>
+    <td>
+        <select name="id_sach" class="form-select" required>
+            <option value="">-- Chọn --</option>
+            @foreach($ds_s as $tg)
+                <option value="{{ $tg->id_sach }}" >
+                    {{ $tg->tensach}}
+                </option>
+            @endforeach
+        </select>
+    </td>
+</tr>
                 <tr>
                     <td class="align-middle px-3">NGÀY MƯỢN</td>
                     <td>

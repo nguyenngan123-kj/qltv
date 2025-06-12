@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\Models\DocGia;
+use App\Models\SinhVien;
 use Illuminate\Http\Request;
 
 class QLTKDGController extends Controller
@@ -30,7 +31,8 @@ class QLTKDGController extends Controller
     {
         $taikhoan = DocGia::findOrFail($id_dg);
         $ds_dg = DocGia::all(); // để hiển thị luôn danh sách
-        return view('qldg', compact('taikhoan', 'ds_dg'));
+         $ds_sv = SinhVien::all();
+        return view('qldg', compact('taikhoan', 'ds_dg','ds_sv'));
     }
 
     // Cập nhật thông tin tài khoản độc giả

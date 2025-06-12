@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\MuonTra;
+use App\Models\Sach;
+use App\Models\DocGia;
 class ThemQLMTController extends Controller
 {
 
@@ -18,11 +20,15 @@ class ThemQLMTController extends Controller
         ]);
 
         MuonTra::create($request->all());
+           
         return redirect()->route('muontra.index');
     }
 
-    public function themqlmt()
-    {
-        return view('themqlmt');
-    }
+   public function themqlmt()
+{
+    $ds_dg = DocGia::all();
+    $ds_s = Sach::all();
+    return view('themqlmt', compact('ds_dg', 'ds_s'));
+}
+
 }

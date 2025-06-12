@@ -4,6 +4,26 @@
     <meta charset="UTF-8">
     <title>QLTG - Quản lý Tác giả</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+       <style>
+@media print {
+    body * {
+        visibility: hidden;
+    }
+    #print-area, #print-area * {
+        visibility: visible;
+    }
+    #print-area {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+    }
+    button, a, form {
+        display: none !important;
+    }
+}
+</style>
+
 </head>
 <body>
 @include('phandauqly')
@@ -59,7 +79,10 @@
     <div class="mb-3 text-start ms-5">
         <a href="{{ route('themqltg') }}" class="btn btn-success">THÊM TÁC GIẢ</a>
     </div>
-
+ <div class="mb-3 text-start ms-5">
+       <button onclick="window.print()" class="btn btn-secondary">IN BẢNG</button>
+    </div>
+       <div id="print-area">
     <table class="table table-bordered" style="width:90%;margin:auto;">
         <thead class="table-light">
             <tr>
@@ -88,6 +111,7 @@
             @endforeach
         </tbody>
     </table>
+       </div>
 </div>
 
 </body>

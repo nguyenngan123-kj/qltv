@@ -12,4 +12,11 @@ class TinTuc extends Model
     protected $table = 'tintuc';
     protected $primaryKey = 'id_tt';
     public $timestamps = false;
+    protected $fillable = [
+        'tieude',
+        'trichdan',
+        'link',
+        'ngaydang',
+        'hinhtt',
+    ];
 }

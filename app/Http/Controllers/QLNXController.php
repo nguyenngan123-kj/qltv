@@ -3,7 +3,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\NhanXet;
-
+use App\Models\Sach;
+use App\Models\DocGia;
 class QLNXController extends Controller
 {
 
@@ -26,7 +27,9 @@ class QLNXController extends Controller
     {
         $nhanxet = NhanXet::findOrFail($id_nx);
         $ds_nhanxet = NhanXet::all(); // nếu cần hiển thị danh sách luôn
-        return view('qlnx', compact('nhanxet', 'ds_nhanxet'));
+        $ds_dg = DocGia::all();
+          $ds_s = Sach::all();
+        return view('qlnx', compact('nhanxet', 'ds_nhanxet','ds_dg','ds_s'));
     }
 
     public function update(Request $request, $id_nx)

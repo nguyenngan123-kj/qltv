@@ -29,14 +29,42 @@
     <div style="width: 100%; display: flex; justify-content: center;">
         <input type="hidden" name="id_nx" value="{{ $nhanxet->id_nx }}">
         <table class="table table-bordered" style="width: 60%;">
-            <tr>
+            <!-- <tr>
                 <td>MÃ ĐỘC GIẢ</td>
                 <td><input name="id_dg" type="number" value="{{ $nhanxet->id_dg }}" class="form-control"></td>
             </tr>
             <tr>
                 <td>MÃ SÁCH</td>
                 <td><input name="id_sach" type="number" value="{{ $nhanxet->id_sach }}" class="form-control"></td>
-            </tr>
+            </tr> -->
+
+<tr>
+    <td>ĐỘC GIẢ</td>
+    <td>
+        <select name="id_dg" class="form-select" required>
+            <option value="">-- Chọn --</option>
+            @foreach($ds_dg as $tg)
+                <option value="{{ $tg->id_dg }}" {{ $tg->id_dg == $nhanxet->id_dg  ? 'selected' : '' }}>
+                    {{ $tg->ten_dg}}
+                </option>
+            @endforeach
+        </select>
+    </td>
+</tr>
+<tr>
+    <td>SÁCH </td>
+    <td>
+        <select name="id_sach" class="form-select" required>
+            <option value="">-- Chọn --</option>
+            @foreach($ds_s as $tg)
+                <option value="{{ $tg->id_sach }}" {{ $tg->id_sach == $nhanxet->id_sach  ? 'selected' : '' }}>
+                    {{ $tg->tensach}}
+                </option>
+            @endforeach
+        </select>
+    </td>
+</tr>
+
             <tr>
                 <td>NHẬN XÉT</td>
                 <td><textarea name="nhanxt" class="form-control">{{ $nhanxet->nhanxt }}</textarea></td>

@@ -4,6 +4,25 @@
     <meta charset="UTF-8">
     <title>QLDG - Quản lý Tài khoản Độc giả</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+        <style>
+@media print {
+    body * {
+        visibility: hidden;
+    }
+    #print-area, #print-area * {
+        visibility: visible;
+    }
+    #print-area {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+    }
+    button, a, form {
+        display: none !important;
+    }
+}
+</style>
 </head>
 <body>
 @include('phandauqly')
@@ -36,10 +55,20 @@
                 <td style="padding: 10px;">Mật Khẩu</td>
                 <td><input name="mk_dg" type="text" value="{{ $taikhoan->mk_dg }}" class="form-control"></td>
             </tr>
-            <tr>
-                <td style="padding: 10px;">ID Sinh Viên</td>
-                <td><input name="id_sv" type="number" value="{{ $taikhoan->id_sv }}" class="form-control"></td>
-            </tr>
+           
+<tr>
+    <td>Mã Sinh Viên</td>
+    <td>
+        <select name="id_sv" class="form-select" required>
+            <option value="">-- Chọn --</option>
+            @foreach($ds_sv as $tg)
+                <option value="{{ $tg->id_sv }}" {{ $tg->id_sv == $taikhoan->id_sv ? 'selected' : '' }}>
+                    {{ $tg->masv}}
+                </option>
+            @endforeach
+        </select>
+    </td>
+</tr>
             <tr>
                 <td colspan="2" class="text-center">
                     <input type="submit" class="btn btn-primary" value="CẬP NHẬT">
@@ -52,10 +81,10 @@
 
 <div class="container mt-5">
     <h2 class="text-center">DANH SÁCH TÀI KHOẢN ĐỘC GIẢ</h2>
-    <div class="mb-3 text-start ms-5">
-        <a href="#" class="btn btn-success disabled">THÊM ĐỘC GIẢ</a> {{-- Bạn có thể thay đổi link nếu muốn thêm chức năng thêm --}}
+ <div class="mb-3 text-start ms-5">
+       <button onclick="window.print()" class="btn btn-secondary">IN BẢNG</button>
     </div>
-
+   <div id="print-area">
     <table class="table table-bordered" style="width:90%;margin:auto;">
         <thead class="table-light">
             <tr>
@@ -82,6 +111,7 @@
             @endforeach
         </tbody>
     </table>
+   </div>
 </div>
 
 </body>

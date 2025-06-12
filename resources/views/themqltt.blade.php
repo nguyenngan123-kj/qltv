@@ -9,7 +9,7 @@
 
 <h2 class="text-center mt-4">THÊM TIN TỨC MỚI</h2>
 
-<form action="{{ route('themqltt.store') }}" method="POST" style="max-width: 700px; margin: auto;">
+<form action="{{ route('themqltt.store') }}" method="POST" style="max-width: 700px; margin: auto;" enctype="multipart/form-data">>
     @csrf
     <table class="table table-bordered">
         <tr>
@@ -28,10 +28,15 @@
             <td style="padding: 10px;">NGÀY ĐĂNG</td>
             <td><input type="date" name="ngaydang" class="form-control" required></td>
         </tr>
+     
+         <tr>
+                    <td style="padding: 10px;">HÌNH ẢNH </td>
+                    <td >
+                        <input type="file" class="form-control" name="hinhtt" accept="image/*">
+
+                    </td>
+                </tr>
         <tr>
-            <td style="padding: 10px;">HÌNH ẢNH (đường dẫn)</td>
-            <td><input type="text" name="hinhtt" class="form-control" required></td>
-        </tr>
         <tr>
             <td colspan="2" class="text-center">
                 <input type="submit" class="btn btn-success" value="THÊM TIN TỨC">

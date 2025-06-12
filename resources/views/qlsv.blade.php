@@ -71,9 +71,9 @@
 
 <div class="container mt-5">
     <h2 class="text-center">DANH SÁCH SINH VIÊN</h2>
-    <div class="mb-3 text-start ms-5">
+    <!-- <div class="mb-3 text-start ms-5">
         <a href="{{ route('themqlsv') }}" class="btn btn-success">THÊM SINH VIÊN</a>
-    </div>
+    </div> -->
 
     <table class="table table-bordered" style="width:90%; margin:auto;">
         <thead>

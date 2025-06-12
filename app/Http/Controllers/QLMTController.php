@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\MuonTra;
 use App\Models\Sach;
+use App\Models\DocGia;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
 
@@ -37,7 +38,10 @@ class QLMTController extends Controller
     {
         $muontra = MuonTra::findOrFail($id_mt);
         $ds_muontra = MuonTra::all(); // nếu muốn danh sách song song
-        return view('qlmt', compact('muontra', 'ds_muontra'));
+          $ds_dg = DocGia::all();
+          $ds_s = Sach::all();
+        
+        return view('qlmt', compact('muontra', 'ds_muontra','ds_dg','ds_s'));
     }
 
     /**
@@ -98,7 +102,7 @@ public function thongKeSach()
         $conlai[] = max($soConLai, 0);
     }
 
-    return view('sosachbd', [
+    return view('tksachmuon', [
         'tensach' => json_encode($tensach),
         'soluong' => json_encode($soluong),
         'damuon' => json_encode($damuon),
@@ -136,7 +140,7 @@ public function thongKeHanNgay()
         $songaymuon[] = $item->songaymuon;
     }
 
-    return view('sdgbd', [
+    return view('tkthoihan', [
         'tensach' => json_encode($tensach),
         'ten_dg' => json_encode($ten_dg),
         'songaymuon' => json_encode($songaymuon),
@@ -169,7 +173,7 @@ public function thongketheothang()
         $soluot[] = $item->soluot;
     }
 
-    return view('stkthang', [
+    return view('tkthang', [
         'tensach' => json_encode($tensach),
         'thang' => json_encode($thang),
         'soluot' => json_encode($soluot),

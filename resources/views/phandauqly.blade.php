@@ -54,37 +54,45 @@
               <ul class="navbar-nav me-auto mb-2 mb-lg-0 ">
                 <li class="nav-item ps-3">            
                 <!-- <i class="fa-solid fa-house"></i>  hình nhà trang chủ                -->
-                  <a class="nav-link active  " aria-current="page" href="{{ route('lop.index') }}"  >QLLOP</a>
+                  <a class="nav-link active  " aria-current="page" href="{{ route('lop.index') }}"  >LỚP</a>
                 </li>
                 <li class="nav-item ps-3">
-                  <a class="nav-link active" aria-current="page" href="{{ route('qldocgia.index') }}"  >QLDocGia</a>
+                  <a class="nav-link active" aria-current="page" href="{{ route('qldocgia.index') }}"  >ĐỘC GIẢ </a>
                 </li>          
 
                   <li class="nav-item ps-3">
-                   <a class="nav-link active" aria-current="page" href="{{ route('qladmin.index') }}" >QLAdmin</a>
+                   <a class="nav-link active" aria-current="page" href="{{ route('qladmin.index') }}" > ADMIN</a>
                   </li>
                   <li class="nav-item ps-3">
-                   <a class="nav-link active" aria-current="page" href="{{ route('muontra.index') }}"  >QLMuonTra</a>
+                   <a class="nav-link active" aria-current="page" href="{{ route('muontra.index') }}"  >MƯỢN TRẢ </a>
                   </li>
                   <li class="nav-item ps-3">
-                   <a class="nav-link active" aria-current="page" href="{{ route('nhanxet.index') }}"   >QLNhanXet</a>
+                   <a class="nav-link active" aria-current="page" href="{{ route('nhanxet.index') }}"   >NHÂN XÉT </a>
                   </li>  
                   <li class="nav-item ps-3">
-                   <a class="nav-link active" aria-current="page" href="{{ route('sach.index') }}"    >QLSach</a>
+                   <a class="nav-link active" aria-current="page" href="{{ route('sach.index') }}"    >SÁCH </a>
                   </li>
                 </li>
                 <li class="nav-item ps-3">
-                  <a class="nav-link active" aria-current="page" href="{{ route('sinhvien.index') }}"    >QLSinhVien </a>
+                  <a class="nav-link active" aria-current="page" href="{{ route('sinhvien.index') }}"    >SINH VIÊN </a>
                 </li>
                 
                 <li class="nav-item ps-3">
-                  <a class="nav-link active" aria-current="page" href="{{ route('tacgia.index') }}"   >QLTacGia </a>
+                  <a class="nav-link active" aria-current="page" href="{{ route('tacgia.index') }}"   >TÁC GIẢ </a>
                 </li>
                 <li class="nav-item ps-3">
-                  <a class="nav-link active" aria-current="page" href="{{ route('theloai.index') }}">QLTheLoai </a>
+                  <a class="nav-link active" aria-current="page" href="{{ route('theloai.index') }}">THỂ LOẠI</a>
                 </li>
                       <li class="nav-item ps-3">
-                  <a class="nav-link active" aria-current="page" href="{{ route('tintuc.index') }}">QLTinTuc </a>
+                  <a class="nav-link active" aria-current="page" href="{{ route('tintuc.index') }}"> TIN TỨC  </a>
+                </li> 
+                </li>
+                      <li class="nav-item ps-3">
+                  <a class="nav-link active" aria-current="page" href="{{ route('dh.index') }}"> ĐĂNG HÌNH  </a>
+                </li> 
+                 </li>
+                      <li class="nav-item ps-3">
+                  <a class="nav-link active" aria-current="page" href="{{ route('thongKeTheLoai') }}">THỐNG KÊ </a>
                 </li>                    
               </ul>
             </div>
