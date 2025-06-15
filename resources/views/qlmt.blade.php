@@ -5,25 +5,7 @@
     <title>QL Mượn-Trả</title>
     <!-- Bootstrap 5 CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-       <style>
-@media print {
-    body * {
-        visibility: hidden;
-    }
-    #print-area, #print-area * {
-        visibility: visible;
-    }
-    #print-area {
-        position: absolute;
-        left: 0;
-        top: 0;
-        width: 100%;
-    }
-    button, a, form {
-        display: none !important;
-    }
-}
-</style>
+
 
 </head>
 <body>
@@ -33,7 +15,7 @@
     <form method="GET" action="{{ route('muontra.index') }}">
         <div class="row mb-3">
             <div class="col-md-10">
-                <input class="form-control" type="text" name="tukhoa" placeholder="Nhập vào id độc giả và id sách" value="{{ $tukhoa ?? '' }}">
+                <input class="form-control" type="text" name="tukhoa" placeholder="Nhập vào độc giả và sách và tháng" value="{{ $tukhoa ?? '' }}">
             </div>
            
             <div class="col-md-2">
@@ -50,15 +32,7 @@
       <div class="d-flex justify-content-center">
         <input type="hidden" name="id_mt" value="{{ $muontra->id_mt }}">
         <table class="table table-bordered w-75">
-          
-        <!-- <tr>
-            <td class="p-2">ID ĐỘC GIẢ</td>
-            <td><input name="id_dg" type="number" value="{{ $muontra->id_dg }}" class="form-control"></td>
-          </tr>
-          <tr>
-            <td class="p-2">ID SÁCH</td>
-            <td><input name="id_sach" type="number" value="{{ $muontra->id_sach }}" class="form-control"></td>
-          </tr> -->
+
 <tr>
     <td>ĐỘC GIẢ</td>
     <td>
@@ -114,11 +88,11 @@
     <h2 class="text-center">DANH SÁCH MƯỢN-TRẢ</h2>
     <div class="mb-3 text-start ms-5">
       <a href="{{ route('themqlmt') }}" class="btn btn-success">Thêm Mượn-Trả</a> 
+      <a href="{{ route('muontra.export', ['tukhoa' => $tukhoa]) }}" class="btn btn-success">Xuất Excel</a>
     </div>
-     <div class="mb-3 text-start ms-5">
-       <button onclick="window.print()" class="btn btn-secondary">IN BẢNG</button>
-    </div>
-       <div id="print-area">
+
+
+    
     <table class="table table-bordered w-90 mx-auto">
       <thead>
         <tr>
@@ -135,8 +109,8 @@
       @foreach($ds_muontra as $muon)
         <tr>
           <td>{{ $muon->id_mt }}</td>
-          <td>{{ $muon->id_dg }}</td>
-          <td>{{ $muon->id_sach }}</td>
+          <td>{{ $muon->ten_dg }}</td>
+          <td>{{ $muon->tensach }}</td>
           <td>{{ $muon->ngaymuon }}</td>
           <td>{{ $muon->ngaytra }}</td>
           <td>{{ $muon->ghichu }}</td>
@@ -151,7 +125,7 @@
       @endforeach
       </tbody>
     </table>
-       </div>
+    
   </div>
 </body>
 </html>

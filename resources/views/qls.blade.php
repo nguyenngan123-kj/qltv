@@ -5,25 +5,7 @@
     <title>QL SÁCH</title>
     <!-- Bootstrap 5 CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-       <style>
-@media print {
-    body * {
-        visibility: hidden;
-    }
-    #print-area, #print-area * {
-        visibility: visible;
-    }
-    #print-area {
-        position: absolute;
-        left: 0;
-        top: 0;
-        width: 100%;
-    }
-    button, a, form {
-        display: none !important;
-    }
-}
-</style>
+
 
 </head>
 <div class="container mt-3">
@@ -60,7 +42,7 @@
     <form method="GET" action="{{ route('sach.index') }}">
         <div class="row mb-3">
             <div class="col-md-10">
-                <input class="form-control" type="text" name="tukhoa" placeholder="Nhập vào mã sách, tên sách " value="{{ $tukhoa ?? '' }}">
+                <input class="form-control" type="text" name="tukhoa" placeholder="Nhập vào mã sách, tên sách, NXB, tháng của ngày nhập  " value="{{ $tukhoa ?? '' }}">
             </div>
             <div class="col-md-2">
                 <button class="btn btn-outline-success w-100" type="submit">Tìm kiếm</button>
@@ -140,18 +122,16 @@
     <h2 class="text-center">DANH SÁCH SÁCH</h2>
     <div class="mb-3 text-start ms-5">
         <a href="{{ route('themqls') }}" class="btn btn-success">THÊM SÁCH</a>
+        <a href="{{ route('sach.export', ['tukhoa' => $tukhoa]) }}" class="btn btn-success">Xuất Excel</a>
     </div>
- <div class="mb-3 text-start ms-5">
-       <button onclick="window.print()" class="btn btn-secondary">IN BẢNG</button>
-    </div>
-       <div id="print-area">
+ 
     <table class="table table-bordered" style="width:90%; margin:auto;">
         <thead>
             <tr>
                 <th>Mã sách</th>
                 <th>Tên sách</th>
-                <th>ID TG</th>
-                <th>ID TL</th>
+                <th>Tác giả</th>
+                <th>Thể loại</th>
                 <th>NXB</th>
                 <th>Ngày nhập</th>
                 <th>Số lượng</th>
@@ -165,8 +145,8 @@
             <tr>
                 <td>{{ $sach->masach }}</td>
                 <td>{{ $sach->tensach }}</td>
-                <td>{{ $sach->id_tg }}</td>
-                <td>{{ $sach->id_tl }}</td>
+                <td>{{ $sach->tentg }}</td>
+                <td>{{ $sach->tentl }}</td>
                 <td>{{ $sach->nxb }}</td>
                 <td>{{ $sach->ngaynhap }}</td>
                 <td>{{ $sach->soluong }}</td>
@@ -183,7 +163,7 @@
         @endforeach
         </tbody>
     </table>
-       </div>
+ 
 </div>
 
 </body>

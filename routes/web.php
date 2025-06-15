@@ -101,10 +101,22 @@ use App\Http\Controllers\ThemQLMTController;
 Route::get('/themqlmt', [ThemQLMTController::class, 'themqlmt'])->name('themqlmt');
 Route::post('/themqlmt', [ThemQLMTController::class, 'store'])->name('themqlmt.store');
 
+//excel
+Route::get('/muontra/export', [QLMTController::class, 'export'])->name('muontra.export');
+
+
+
 //bieu do
 Route::get('/sosach/bieudo', [App\Http\Controllers\QLMTController::class, 'thongKeSach'])->name('thongKeSach');
-Route::get('/sdgbd/bieudo', [App\Http\Controllers\QLMTController::class, 'thongKeHanNgay'])->name('thongKeHanNgay');
-Route::get('/stkthang/bieudo', [App\Http\Controllers\QLMTController::class, 'thongketheothang'])->name('thongketheothang');
+Route::get('/hanngay/bieudo', [App\Http\Controllers\QLMTController::class, 'thongKeHanNgay'])->name('thongKeHanNgay');
+Route::get('/tktheothang/bieudo', [App\Http\Controllers\QLMTController::class, 'thongketheothang'])->name('thongketheothang');
+//excel
+Route::get('/tktheothang/export', [App\Http\Controllers\QLMTController::class, 'exportThongKeTheoThang'])->name('tktthang.export');
+Route::get('/quahan/export', [App\Http\Controllers\QLMTController::class, 'exportThongKeHanNgay'])->name('quahan.export');
+Route::get('/export-thong-ke-sach', [QLMTController::class, 'exportThongKeSach'])->name('export.thongkesach');
+
+Route::get('/thongke/sach/export', [QLMTController::class, 'exportThongKeSach'])->name('export.thongkesach');
+
 
 
 
@@ -136,7 +148,18 @@ Route::get('/themqls', [ThemQLSController::class, 'themqls'])->name('themqls');
 Route::post('/themqls', [ThemQLSController::class, 'store'])->name('themqls.store');
 
 //bieu do
-Route::get('/sachbd/bieudo', [App\Http\Controllers\QLSController::class, 'thongKeTheLoai'])->name('thongKeTheLoai');
+Route::get('/sachbd/bieudo', [QLSController::class, 'thongKeTheLoai'])->name('thongKeTheLoai');
+//excel 
+Route::get('/sach/export', [QLSController::class, 'export'])->name('sach.export');
+
+Route::get('/thongke/theloaisach/export', [QLSController::class, 'exportThongKeTheLoai'])->name('export.thongketheloai');
+
+
+
+
+
+
+
 
 
 // quan ly sinh vien

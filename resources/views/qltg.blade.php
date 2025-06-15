@@ -79,10 +79,7 @@
     <div class="mb-3 text-start ms-5">
         <a href="{{ route('themqltg') }}" class="btn btn-success">THÊM TÁC GIẢ</a>
     </div>
- <div class="mb-3 text-start ms-5">
-       <button onclick="window.print()" class="btn btn-secondary">IN BẢNG</button>
-    </div>
-       <div id="print-area">
+
     <table class="table table-bordered" style="width:90%;margin:auto;">
         <thead class="table-light">
             <tr>
@@ -111,7 +108,7 @@
             @endforeach
         </tbody>
     </table>
-       </div>
+
 </div>
 
 </body>

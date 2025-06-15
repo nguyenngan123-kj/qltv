@@ -97,8 +97,8 @@
         @foreach($ds_nhanxet as $nhanxet)
         <tr>
             
-            <td>{{ $nhanxet->id_dg }}</td>
-            <td>{{ $nhanxet->id_sach }}</td>
+            <td>{{ $nhanxet->ten_dg}}</td>
+            <td>{{ $nhanxet->tensach }}</td>
             <td>{{ $nhanxet->nhanxt }}</td>
             <td>
                 <form action="{{ route('nhanxet.edit', $nhanxet->id_nx) }}" method="GET" style="display:inline-block;">

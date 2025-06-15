@@ -45,7 +45,10 @@
 
     {{-- Bảng thống kê --}}
     <h2>Bảng thống kê số lượng sách theo thể loại</h2>
-    <table>
+       <div class="mb-3 text-start ms-5">
+         <a href="{{ route('export.thongketheloai') }}" class="btn btn-success">Xuất Excel</a>
+    </div>
+        <table>
         <thead>
             <tr>
                 <th>Thể loại</th>

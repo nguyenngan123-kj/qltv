@@ -42,6 +42,9 @@
     </div>
 
     <h2>Bảng thống kê người mượn sách quá hạn ( > 5 ngày )</h2>
+           <div class="mb-3 text-start ms-5">
+         <a href="{{ route('quahan.export') }}" class="btn btn-success">Xuất Excel</a>
+    </div>
     <table>
         <thead>
             <tr>

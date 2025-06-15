@@ -43,6 +43,9 @@
 
     {{-- Bảng thống kê --}}
     <h2>Bảng Thống kê số sách đã mượn</h2>
+           <div class="mb-3 text-start ms-5">
+         <a href="{{ route('export.thongkesach') }}" class="btn btn-success">Xuất Excel</a>
+    </div>
     <table>
         <thead>
             <tr>

@@ -13,11 +13,17 @@ class QLNXController extends Controller
         $tukhoa = $request->input('tukhoa');
 
         if ($tukhoa) {
-            $ds_nhanxet = NhanXet::where('id_sach', 'like', "%$tukhoa%")
-                
+             $ds_nhanxet = NhanXet::join('sach', 'sach.id_sach', '=', 'nhanxet.id_sach')
+            ->join('tkdocgia', 'tkdocgia.id_dg', '=', 'nhanxet.id_dg')
+                ->where('tkdocgia.ten_dg', 'like', "%$tukhoa%")
+                ->orWhere('sach.tensach', 'like', "%$tukhoa%")
+                 ->select('nhanxet.*', 'tkdocgia.ten_dg', 'sach.tensach')
                 ->get();
         } else {
-            $ds_nhanxet = NhanXet::all();
+            $ds_nhanxet = NhanXet::join('sach', 'sach.id_sach', '=', 'nhanxet.id_sach')
+            ->join('tkdocgia', 'tkdocgia.id_dg', '=', 'nhanxet.id_dg')
+            ->select('nhanxet.*', 'tkdocgia.ten_dg', 'sach.tensach')
+            ->get();
         }
 
         return view('qlnx', compact('ds_nhanxet', 'tukhoa'));
