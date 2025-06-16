@@ -63,6 +63,18 @@ Route::get('/dangky', [DangKyController::class, 'show'])->name('dangky');
 Route::post('/dangky', [DangKyController::class, 'store'])->name('dangky.store');
 
 
+//theloai
+use App\Http\Controllers\LGiaotrinhController;
+Route::get('/giaotrinh', [LGiaotrinhController::class, 'show'])->name('giaotrinh.show');
+use App\Http\Controllers\LTieuthuyetController;
+Route::get('/tieuthuyet', [LTieuthuyetController::class, 'show'])->name('tieuthuyet.show');
+use App\Http\Controllers\LuanvanContrller;
+Route::get('/luanvan', [LuanvanContrller::class, 'show'])->name('luanvan.show');
+use App\Http\Controllers\LVanhocController;
+Route::get('/vanhoc', [LVanhocController::class, 'show'])->name('vanhoc.show');
+
+
+
 //quan ly lop
 use App\Http\Controllers\QLLOPController;
 

@@ -66,14 +66,13 @@
                           <ul class="dropdown-menu">
                       
                           <!-- <li><a class="dropdown-item" href="">Tài liệu tham khảo</a></li> -->
-                          <li><a class="dropdown-item" href="">Giáo trình </a></li>
+                          <li><a class="dropdown-item" href="{{route('giaotrinh.show')}}">Giáo trình </a></li>
                           
-                          <li><a class="dropdown-item" href="">Luận văn</a></li>
-                          <li><a class="dropdown-item" href="">Tạp chí</a></li>
-                          <li><a class="dropdown-item" href="">Văn học</a></li>
-                          <li><a class="dropdown-item" href="">Sách kỹ năng </a></li>
-                          
-                          <li><a class="dropdown-item" href="">Tiểu thuyết </a></li>
+                          <li><a class="dropdown-item" href="{{route('luanvan.show')}}">Luận văn</a></li>
+
+                          <li><a class="dropdown-item" href="{{route('vanhoc.show')}}">Văn học</a></li>
+
+                          <li><a class="dropdown-item" href="{{route('tieuthuyet.show')}}">Tiểu thuyết </a></li>
                           </ul>
                   </li>
               
@@ -111,6 +110,8 @@
 </div>
 </div>
 </section >
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
 </body>
 </html>
 
